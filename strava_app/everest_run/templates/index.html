@@ -1,0 +1,18 @@
+<h1>Bienvenue sur Everest run by Run Maax</h1>
+
+<p>La date actuelle est : {{ date }}</p>
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+Vous êtes connecté, {{ user.username }} !
+{% else %}
+<p> Create an account:
+<a href="{{ url_strava }}">Click here to connect with strava</a>
+Then you will create an account here just to have a speeder access, we store none of your data.
+</p>
+<p>
+  Connexion: <a href="connexion">Click here to connect</a>
+</p>
+{% endif %}

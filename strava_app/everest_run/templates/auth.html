@@ -1,0 +1,22 @@
+<h1>Bienvenue sur Everest run by Run Maax</h1>
+
+
+
+<h1>Create account</h1>
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+Vous êtes connecté, {{ user.username }} !
+<p> Strava data:
+  {{id_runner}} token: {{ access_token }}
+</p>
+{% else %}
+
+<form method="post" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Creer compte" />
+</form>
+{% endif %}
