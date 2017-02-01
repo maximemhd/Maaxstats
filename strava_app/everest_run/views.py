@@ -62,9 +62,16 @@ def connexion(request):
                 print('erreur connexion')
     else:
         form = forms.ConnexionForm()
-
     return render(request, 'login.html', locals())
 
+from django.contrib.auth import logout
+from django.shortcuts import render
+from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
+
+def deconnexion(request):
+    logout(request)
+    return redirect(reverse(connexion))
 
 def profileView(request):
     username = None

@@ -1,15 +1,74 @@
-<h1>Se connecter</h1>
+{% load static %}
+  <!DOCTYPE html>
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
 
-{% if error %}
-<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
-{% endif %}
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Fancy statistics</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-{% if user.is_authenticated %}
-Vous êtes connecté, {{ user.username }} !
-{% else %}
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Se connecter" />
-</form>
-{% endif %}
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+      <link rel="stylesheet" href="{% static "everest_run/css/normalize.css" %}">
+      <link rel="stylesheet" href="{% static "everest_run/css/main.css" %}">
+      <script src="{% static "everest_run/js/vendor/modernizr-2.7.1.min.js" %}"></script>
+      <style type="text/css">
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+  </head>
+
+  {% if error %}
+  <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+  {% endif %}
+
+
+  <body class="loading">
+    <header class="entry-header">
+      <div class="inner">
+        <h2 class="entry-title">Strava fancy stats</h2>
+        <a href="deconnexion">Log out</a>
+      </div>
+  </header>
+      <main>
+        <section id="slide-0" class="homeSlide">
+          <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;">
+            <div class="hsContainer">
+            <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0">
+
+             {% if user.is_authenticated %}
+
+            <h2>You are connected, {{ user.username }}.</h2>
+            <p><a href="/everest_run/profile">Click here to view your stats</a></p>
+
+            {% else %}
+
+            <p><form method="post" action="">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Se connecter" />
+            </form></p>
+
+            {% endif %}
+
+            </div>
+            </div>
+          </div>
+      </section>
+  </main>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{% static "js/vendor/jquery-1.9.1.min.js"%}"><\/script>')</script>
+      <script src="{%static "everest_run/js/imagesloaded.js"%}"></script>
+      <script src="{% static "everest_run/js/waypoints.min.js"%}"></script>
+      <script src="{% static "everest_run/js/skrollr.js" %}"></script>
+      <!--[if lt IE 9]>
+  <script type="text/javascript" src="js/skrollr.ie.min.js"></script>
+  <![endif]-->
+      <script src="{% static "everest_run/js/_main.js"%}"></script>
+
+  </body>
+</html>
