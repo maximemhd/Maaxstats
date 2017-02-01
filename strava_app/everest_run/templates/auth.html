@@ -13,7 +13,7 @@ Vous êtes connecté, {{ user.username }} !
   {{id_runner}} token: {{ access_token }}
 </p>
 {% else %}
-
+Your token is : {{ access_token }}
 <form method="post" action=".">
     {% csrf_token %}
     {{ form.as_p }}

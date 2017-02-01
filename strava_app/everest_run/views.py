@@ -17,14 +17,14 @@ def index(request):
     # Have the user click the authorization URL, a 'code' param will be added to the redirect_uri
     # .....
     #url_strava = authorize_url.encode('ascii','ignore')
-    url_strava = 'https://www.strava.com/oauth/authorize?client_id=13966&response_type=code&redirect_uri=http://192.168.0.11:8000/everest_run/authorization/&scope=write&state=mystate&approval_prompt=force'
+    url_strava = 'https://www.strava.com/oauth/authorize?client_id=13966&response_type=code&redirect_uri=http://maaxrun.pythonanywhere.com/everest_run/authorization/&scope=write&state=mystate&approval_prompt=force'
     print(type(url_strava))
     date = datetime.now()
 
     return render(request, 'index.html', locals())
 
 def auth(request):
-    #client = Client()
+    client = Client()
     if request.method == "POST":
         form = forms.CreateUserForm(request.POST)
         if form.is_valid():

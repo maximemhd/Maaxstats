@@ -25,7 +25,7 @@ SECRET_KEY = 'wbcg76@unz!0^3@suvgk$zy$is8cx#&7*v)3*m2%zd_7#a!xhu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['maaxrun.pythonanywhere.com']
 
 
 # Application definition
