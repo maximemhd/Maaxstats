@@ -24,39 +24,138 @@
   {% if error %}
   <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
   {% endif %}
-
-
   <body class="loading">
     <header class="entry-header">
       <div class="inner">
-        <h2 class="entry-title">Strava fancy stats</h2>
-        <a href="deconnexion">Log out</a>
+        <h2 class="h2logout">Strava fancy stats</h2>
+  {% if user.is_authenticated %}      
+        <a class="logout"href="deconnexion">Log out</a>
       </div>
   </header>
-      <main>
-        <section id="slide-1" class="homeSlide">
-          <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
-            <div class="hsContainer">
-            <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h2">
-              {% if user.is_authenticated %}
-              <h2>Vous êtes connecté, {{ user.username }} !</h2>
-              <a href="/everest_run/profile">Click here to view your stats</a>
-              <p>La date actuelle est : {{ date }}</p>
-              {% else %}
-              <h2> Create an account:
-              <a href="{{ url_strava }}">Click here to connect with strava</a>
-              Then you will create an account here just to have a speeder access, we store none of your data.
-            </h2>
-              <p>
-                Connexion: <a href="connexion">Click here to connect</a>
-              </p>
-              {% endif %}
 
-            </div>
-            </div>
-          </div>
-      </section>
-  </main>
+
+<main>
+  <section id="slide-0" class="homeSlide">
+    <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
+      <div class="hsContainer">
+      <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h2">
+        <h2>You will discover your<br />awesome statistics</h2>
+        <p>Scroll down to continue.</p>
+      </div>
+      </div>
+    </div>
+</section>
+
+  <section id="slide-1" class="homeSlide">
+    <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
+      <div class="hsContainer">
+      <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h2">
+        <h2>Total elevation: <br />{{ elevation }}m</h2>
+        <p><span class="bgBlack">It represents {{ nb_everest }} ascensions of the Everest, or {{ nb_mtblanc }} ascensions of the Mont Blanc.</span></p>
+      </div>
+      </div>
+    </div>
+</section>
+
+<section id="slide-2" class="homeSlide">
+  <div class="bcg" data-0="background-color:rgb(1,27,59);" data--25p-bottom="background-color:rgb(1,27,59);" data--90p-bottom="background-color:(0,0,0);"  data-anchor-target="#slide-2">
+  <!-- <div class="bcg" data-0="background-color:rgb(1,27,59);" data-top="background-color:(0,0,0);"  data-anchor-target="#slide-2"> -->
+    <div class="hsContainer">
+      <div class="hsContent">
+        <h2 data-center="opacity: 1" data--200-bottom="opacity: 0" data-206-top="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-2 h2">Best running speed</h2>
+        <p data-center="opacity: 1" data--200-bottom="opacity: 0" data-206-top="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-2 h2">{{ best_speed }}km/h.<br />Pace: {{ partie_entiere }}:{%if is_inf10 %}0{%endif%}{{ partie_decimale }}min/km</p>
+      </div>
+      </div>
+  </div>
+</section>
+
+<section id="slide-3" data-content-offset="50p" class="homeSlide homeSlideTall2">
+<div class="bcg"
+  data-center="background-position: 0px 50%;"
+  data-bottom-top="background-position: 0px 40%;"
+  data-top-bottom="background-position: -40px 50%;"
+  data-anchor-target="#slide-3">
+    <div class="hsContainer">
+      <div class="bcg bcg2" data-bottom-top="opacity: 1" data-top="opacity: 1;" data--150-top="opacity: 0" data-anchor-target="#slide-3">&nbsp;</div>
+      <div class="hsContent">
+        <div class="plaxEl" data-bottom-top="opacity: 0" data-top="opacity: 0" data--50p-top="opacity: 1; position: fixed; top: 206px; width: 100%; left: 0;" data--25p-bottom="opacity: 1;" data--50p-bottom="opacity: 0;" data-anchor-target="#slide-3">
+          <h2>Best running speed</h2><br>
+          <p><span class="bgBlack"></span>aaaaaazzzzzzertyuuuuuuuuuuuuuuuuuuuuuiop</p>
+          <p><span class="bgBlack">Or did you think that the scooter is driving off?</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="slide-4" data-content-offset="90p" class="homeSlide homeSlideTall">
+<div class="bcg" data-bottom-top="background-position: 50% 100px" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-4">
+  <div class="curtainContainer">
+
+    <div class="curtain" data-bottom-top="opacity: 0; height: 1%;" data-106-top="height: 1%; opacity: 0; top: -10%;" data-center="height: 100%; opacity: 0.5; top: 0%;" data-top-bottom="height: 100%; opacity: 0.5; top: 0%;" data-anchor-target="#slide-4"></div>
+    <div class="copy" data-bottom-top="opacity: 0" data--100-bottom="opacity: 0" data--280-bottom="opacity: 1;" data-280-top="opacity: 1;" data-106-top="opacity: 0;" data-anchor-target="#slide-4 .copy">
+      <h2>Curtain effect while you scroll</h2>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<section id="slide-5" data-content-offset="66p" class="homeSlide homeSlideTall2">
+  <div class="bcg">
+    &nbsp;
+  </div>
+  <div class="bcg bcg2" data-bottom-top="opacity: 0;" data--33p-top="opacity: 0;" data--66p-top="opacity: 1;" data-anchor-target="#slide-5">
+    <div class="hsContainer">
+      <div class="hsContent" data-bottom-top="opacity: 0;" data-center="opacity: 1" data-anchor-target="#slide-5">
+        <h2>Fixed element fading in and out</h2>
+        <p>Showcase your beautiful images before blurring the scene and fading in your headline.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bcg bcg3" data-300-bottom="opacity: 0;" data-100-bottom="opacity: 1;" data-anchor-target="#slide-5">
+    <div class="hsContainer">
+      <div class="hsContent" data-100-bottom="opacity: 0;" data-bottom="opacity: 1;" data-anchor-target="#slide-5">
+        <h2>The End</h2>
+        <p>Not enough parallax goodness? Let me know in the comments or hit me up at <a href="https://www.twitter.com/ihatetomatoes" target="_blank">@ihatetomatoes</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+{% else %}
+</div>
+  </header>
+<main>
+  <section id="slide-0" class="homeSlide">
+    <div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-0">
+      <div class="hsContainer">
+      <div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0.5" data-anchor-target="#slide-0 h2">
+        <br><h2> Create an account if </br>it's your first time here :</h2>
+        <p class="bgBlack">
+        <a href="{{ url_strava }}">Click here to connect with strava</a>    
+        Then you will create an account here just to have a speeder access, we store none of your data.</p>
+        
+              <h3>Connect if you already have connected with strava:</h3> 
+               <p class="bgBlack"> <a href="connexion">Click here to connect</a>
+        </p>
+
+
+      </div>
+      </div>
+    </div>
+</section>
+</main>
+
+{% endif %}
+
+
+
+
+
 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="{% static "js/vendor/jquery-1.9.1.min.js"%}"><\/script>')</script>

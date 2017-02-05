@@ -11,15 +11,43 @@ import forms
 
 
 def index(request):
-    #strava_functions.login_strava();
-    #client = Client()
-    #authorize_url = client.authorization_url(client_id=13966, redirect_uri='http://127.0.0.1:8000/everest_run/authorization/')
-    # Have the user click the authorization URL, a 'code' param will be added to the redirect_uri
-    # .....
-    #url_strava = authorize_url.encode('ascii','ignore')
+
     url_strava = 'https://www.strava.com/oauth/authorize?client_id=13966&response_type=code&redirect_uri=http://maaxrun.pythonanywhere.com/everest_run/authorization/&scope=write&state=mystate&approval_prompt=force'
     print(type(url_strava))
     date = datetime.now()
+
+    username = None
+    if request.user.is_authenticated():
+        #username = request.user.username
+        access_token = request.user.profile.user_token
+        client = Client(access_token)
+        athlete = client.get_athlete()
+        id_runner =athlete.id
+
+        elevation = 0
+        best_speed = 0.0
+            # Activities can have many streams, you can request desired stream types
+
+        for activity in client.get_activities(after = "2016-01-01T00:00:00Z"):
+            #print("{0.distance} {0.moving_time} {0.total_elevation_gain}".format(activity).encode('utf-8'))
+            if activity.type == 'Run':
+                elevation += float(activity.total_elevation_gain)
+                if float(activity.distance)/activity.moving_time.total_seconds()>best_speed:
+                    best_speed = float(activity.distance)/activity.moving_time.total_seconds()
+
+
+        nb_everest = round(elevation/8848,2);
+        nb_mtblanc = round(elevation/4809,2);
+        best_speed = round(best_speed*3.6,2)
+        best_allure = 1/(best_speed/60)
+        partie_entiere = int(best_allure)
+        partie_decimale = int((best_allure - partie_entiere)*60)
+        if partie_decimale<10:
+            is_inf10 =  1
+        else: is_inf10 = 0
+        #best_allure = partie_entiere + partie_decimale
+    else:
+        print('error')
 
     return render(request, 'index.html', locals())
 

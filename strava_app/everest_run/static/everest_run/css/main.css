@@ -64,7 +64,7 @@ left: 0;
 width: 100%;
 z-index: 10000;
 overflow: hidden;
-color: #ffa700;
+color:#FF9800;
 }
 
 }
@@ -83,6 +83,24 @@ h2 {
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
+
+h2.h2logout{
+    margin: 0;
+ float:left;
+  font-size: 32px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+}
+.logout{
+    margin: 12px auto auto auto;
+    float:right;
+    text-decoration:none;
+    color:#FF9800;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
 .entry-header .inner {
   text-align: left;
   margin: 0 auto 10px auto;
@@ -227,17 +245,32 @@ main {
 	position: relative;
 	z-index: 10;
 }
+
+.h2black{
+	    color:#000000;
+	}
+
 	.hsContent h2,
 	.copy h2 {
 		color: #ffffff;
-		font-size: 45px;
-		line-height: 48px;
 		margin-bottom: 12px;
+
 	}
+
+
+	.hsContent h3,
+	.copy h3 {
+		color: #FF8F00;
+		margin-bottom: 12px;
+		opacity:100;
+
+	}
+
 	.hsContent p {
 		width: 400px;
 		margin: 0 auto;
 		color: #b2b2b2;
+		/*text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;*/
 	}
 	.hsContent a {
 		color: #b2b2b2;
