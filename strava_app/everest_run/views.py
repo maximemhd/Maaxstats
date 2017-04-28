@@ -1,7 +1,6 @@
 # coding: utf-8
 from django.shortcuts import render
 from datetime import datetime
-
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -12,7 +11,7 @@ import forms
 
 def index(request):
 
-    url_strava = 'https://www.strava.com/oauth/authorize?client_id=13966&response_type=code&redirect_uri=http://maaxrun.pythonanywhere.com/everest_run/authorization/&scope=write&state=mystate&approval_prompt=force'
+    url_strava = 'https://www.strava.com/oauth/authorize?client_id=13966&response_type=code&redirect_uri=http://maaxrun.pythonanywhere.com/authorization/&scope=write&state=mystate&approval_prompt=force'
     print(type(url_strava))
     date = datetime.now()
 
@@ -26,6 +25,7 @@ def index(request):
 
         elevation = 0
         best_speed = 0.0
+        longest_run =0.0;
             # Activities can have many streams, you can request desired stream types
 
         for activity in client.get_activities(after = "2016-01-01T00:00:00Z"):
@@ -34,10 +34,12 @@ def index(request):
                 elevation += float(activity.total_elevation_gain)
                 if float(activity.distance)/activity.moving_time.total_seconds()>best_speed:
                     best_speed = float(activity.distance)/activity.moving_time.total_seconds()
-
+                if float(activity.distance) > longest_run:
+                    longest_run=float(activity.distance)
 
         nb_everest = round(elevation/8848,2);
         nb_mtblanc = round(elevation/4809,2);
+        longest_run = longest_run/1000;
         best_speed = round(best_speed*3.6,2)
         best_allure = 1/(best_speed/60)
         partie_entiere = int(best_allure)
@@ -93,7 +95,6 @@ def connexion(request):
     return render(request, 'login.html', locals())
 
 from django.contrib.auth import logout
-from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
@@ -112,6 +113,8 @@ def profileView(request):
 
         elevation = 0
         best_speed = 0.0
+        longest_run = 0;
+        #longest_run_date;
             # Activities can have many streams, you can request desired stream types
 
         for activity in client.get_activities(after = "2016-01-01T00:00:00Z"):
@@ -120,6 +123,8 @@ def profileView(request):
                 elevation += float(activity.total_elevation_gain)
                 if float(activity.distance)/activity.moving_time.total_seconds()>best_speed:
                     best_speed = float(activity.distance)/activity.moving_time.total_seconds()
+                if activity.distance > longest_run:
+                    longest_run=activity.distance
 
 
         nb_everest = round(elevation/8848,2);
@@ -132,6 +137,7 @@ def profileView(request):
             is_inf10 =  1
         else: is_inf10 = 0
         #best_allure = partie_entiere + partie_decimale
+        longest_run = longest_run/1000;
     else:
         print('error')
     return render(request,'profile.html',locals())
